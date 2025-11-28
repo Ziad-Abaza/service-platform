@@ -1,5 +1,28 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
 
-:root {
-    --f-color-gray-950: #333333;
+/* 1. Tell Tailwind where to look for classes (replaces 'content' in config.js) 
+   Adjust paths if your files are located elsewhere.
+*/
+@source '../../../../app/Filament';
+@source '../../../../resources/views/filament';
+
+/* 2. Override Dark Mode Background 
+   Filament v4 uses CSS variables, but a direct class override is the 
+   simplest way to force a specific hex color like #333.
+*/
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Optional: Override the base gray palette if you want a complete shift */
+        /* --color-gray-950: 51 51 51; */
+    }
+}
+
+/* Force the body background to your custom color */
+html.dark .fi-body {
+    background-color: #333333; 
+}
+
+/* Optional: Match the sidebar to the new background */
+html.dark .fi-sidebar {
+    background-color: #333333;
 }

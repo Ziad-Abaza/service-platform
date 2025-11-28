@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use Filament\PanelProvider;
 use Filament\Panel;
+use App\Filament\Auth\CustomLogin;
 
 class AdminPanelProvider extends PanelProvider
 {
