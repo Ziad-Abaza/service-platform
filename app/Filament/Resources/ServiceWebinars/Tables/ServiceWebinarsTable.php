@@ -19,7 +19,7 @@ class ServiceWebinarsTable
     {
         return $table
             ->columns([
-                ImageColumn::make('banner_url')
+                ImageColumn::make('banner')
                     ->label(__('models.banner'))
                     ->size(40)
                     ->circular()

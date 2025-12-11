@@ -18,7 +18,7 @@ class CategoriesTable
     {
         return $table
             ->columns([
-                ImageColumn::make('logo_url')
+                ImageColumn::make('logo')
                     ->label(__('filament.logo'))
                     ->size(40)
                     ->circular()

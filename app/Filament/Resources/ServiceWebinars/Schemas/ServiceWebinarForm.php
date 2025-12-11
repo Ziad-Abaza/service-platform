@@ -80,7 +80,9 @@ class ServiceWebinarForm
                     FileUpload::make('banner')
                         ->label(__('models.banner'))
                         ->image()
+                        ->disk('public')
                         ->directory('webinar-banners')
+                        ->visibility('public')
                         ->maxSize(2048)
                         ->columnSpanFull(),
                 ]),

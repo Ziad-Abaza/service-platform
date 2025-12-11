@@ -22,6 +22,7 @@ return [
     'tutorials' => 'Tutorials',
     'webinars' => 'Webinars',
     'documents' => 'Documents',
+    'comparison' => 'Comparison',
     'comparisons' => 'Comparisons',
     'general_settings' => 'General Settings',
     'user_management' => 'User Management',

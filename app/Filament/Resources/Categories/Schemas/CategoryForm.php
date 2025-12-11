@@ -57,7 +57,9 @@ class CategoryForm
                     ->schema([
                         FileUpload::make('logo')
                             ->image()
+                            ->disk('public')
                             ->directory('categories/logos')
+                            ->visibility('public')
                             ->maxSize(2048)
                             ->columnSpanFull(),
                     ]),

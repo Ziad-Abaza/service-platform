@@ -50,7 +50,9 @@ class ServiceTutorialForm
                 ->schema([
                     FileUpload::make('video')
                         ->label(__('models.video'))
+                        ->disk('public')
                         ->directory('service-tutorials')
+                        ->visibility('public')
                         ->maxSize(102400) // 100MB
                         ->acceptedFileTypes(['video/mp4', 'video/mpeg', 'video/quicktime'])
                         ->columnSpanFull(),

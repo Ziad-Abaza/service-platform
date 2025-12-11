@@ -22,6 +22,7 @@ return [
     'tutorials' => 'الدروس التعليمية',
     'webinars' => 'الندوات',
     'documents' => 'المستندات',
+    'comparison' => 'مقارنة',
     'comparisons' => 'المقارنات',
     'general_settings' => 'الإعدادات العامة',
     'user_management' => 'إدارة المستخدمين',

@@ -66,12 +66,16 @@ class ServiceForm
                     ->schema([
                         FileUpload::make('logo')
                             ->image()
+                            ->disk('public')
                             ->directory('services/logos')
+                            ->visibility('public')
                             ->maxSize(2048)
                             ->columnSpanFull(),
                         FileUpload::make('banner')
                             ->image()
+                            ->disk('public')
                             ->directory('services/banners')
+                            ->visibility('public')
                             ->maxSize(4096)
                             ->columnSpanFull(),
                     ]),

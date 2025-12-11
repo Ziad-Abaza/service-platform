@@ -43,7 +43,9 @@ class FeatureForm
                     FileUpload::make('logo')
                         ->label(__('models.logo'))
                         ->image()
+                        ->disk('public')
                         ->directory('features/logos')
+                        ->visibility('public')
                         ->maxSize(2048)
                         ->columnSpanFull(),
                 ]),

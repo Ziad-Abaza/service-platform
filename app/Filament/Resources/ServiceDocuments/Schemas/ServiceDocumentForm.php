@@ -59,7 +59,9 @@ class ServiceDocumentForm
                 ->schema([
                     FileUpload::make('file')
                         ->label(__('models.file'))
+                        ->disk('public')
                         ->directory('service-documents')
+                        ->visibility('public')
                         ->maxSize(10240)
                         ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
                         ->columnSpanFull(),
