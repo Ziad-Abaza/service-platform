@@ -2,6 +2,10 @@
 
 return [
     // Navigation Groups
+    'core_services' => 'Core Services',
+    'service_content' => 'Service Content',
+    'configuration' => 'Configuration',
+    'system' => 'System',
     'services' => 'Services',
     'content_management' => 'Content Management',
     'settings' => 'Settings',
@@ -28,7 +32,7 @@ return [
     'list' => 'List',
     'create_new' => 'Create New',
     'edit' => 'Edit',
-    
+
     // Language and User
     'arabic' => 'Arabic',
     'english' => 'English',

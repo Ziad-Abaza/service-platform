@@ -23,7 +23,9 @@ class ServiceDocumentResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Content Management';
+    protected static string|UnitEnum|null $navigationGroup = 'Service Content';
+
+    protected static ?int $navigationSort = 1;
 
     public static function getNavigationLabel(): string
     {

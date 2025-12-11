@@ -57,6 +57,18 @@ return [
     'leave_empty_unlimited' => 'اتركه فارغاً لعدد غير محدود',
     'is_recurring' => 'متكرر',
 
+    // Setting Fields
+    'key' => 'المفتاح',
+    'value' => 'القيمة',
+    'values' => 'القيم',
+    'value_ar' => 'القيمة بالعربية',
+    'value_en' => 'القيمة بالإنجليزية',
+    'text' => 'نص',
+    'textarea' => 'نص طويل',
+    'number' => 'رقم',
+    'boolean' => 'منطقي',
+    'json' => 'JSON',
+
     // Category Fields
     'parent_category' => 'الفئة الأم',
     'root_category' => 'الفئة الجذر',

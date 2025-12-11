@@ -57,6 +57,18 @@ return [
     'leave_empty_unlimited' => 'Leave empty for unlimited',
     'is_recurring' => 'Recurring',
 
+    // Setting Fields
+    'key' => 'Key',
+    'value' => 'Value',
+    'values' => 'Values',
+    'value_ar' => 'Arabic Value',
+    'value_en' => 'English Value',
+    'text' => 'Text',
+    'textarea' => 'Textarea',
+    'number' => 'Number',
+    'boolean' => 'Boolean',
+    'json' => 'JSON',
+
     // Category Fields
     'parent_category' => 'Parent Category',
     'root_category' => 'Root Category',

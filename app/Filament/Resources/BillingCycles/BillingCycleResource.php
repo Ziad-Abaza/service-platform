@@ -29,7 +29,9 @@ class BillingCycleResource extends Resource
     protected static ?string $breadcrumb = 'billing_cycles';
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Settings';
+    protected static string|UnitEnum|null $navigationGroup = 'Configuration';
+
+    protected static ?int $navigationSort = 3;
 
     public static function getNavigationLabel(): string
     {

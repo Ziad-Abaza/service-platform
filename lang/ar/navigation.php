@@ -2,6 +2,10 @@
 
 return [
     // Navigation Groups
+    'core_services' => 'الخدمات الأساسية',
+    'service_content' => 'محتوى الخدمات',
+    'configuration' => 'الإعدادات',
+    'system' => 'النظام',
     'services' => 'الخدمات',
     'content_management' => 'إدارة المحتوى',
     'settings' => 'الإعدادات',
@@ -28,7 +32,7 @@ return [
     'list' => 'القائمة',
     'create_new' => 'إنشاء جديد',
     'edit' => 'تعديل',
-    
+
     // Language and User
     'arabic' => 'العربية',
     'english' => 'الإنجليزية',

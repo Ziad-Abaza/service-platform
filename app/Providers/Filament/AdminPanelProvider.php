@@ -46,9 +46,10 @@ class AdminPanelProvider extends PanelProvider
             ->authGuard('web')
             ->brandName(__('navigation.dashboard'))
             ->navigationGroups([
-                __('navigation.services'),
-                __('navigation.content_management'),
-                __('navigation.settings'),
+                __('navigation.core_services'),
+                __('navigation.service_content'),
+                __('navigation.configuration'),
+                __('navigation.system'),
             ])
             ->userMenuItems([
                 // Language switcher بدون أيقونة

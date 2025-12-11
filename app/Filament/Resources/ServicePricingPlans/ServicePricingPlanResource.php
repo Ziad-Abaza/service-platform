@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class ServicePricingPlanResource extends Resource
 {
@@ -25,6 +26,10 @@ class ServicePricingPlanResource extends Resource
     protected static ?string $navigationLabel = 'service_pricing_plans';
     protected static ?string $breadcrumb = 'service_pricing_plans';
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Core Services';
+
+    protected static ?int $navigationSort = 4;
 
     public static function getNavigationLabel(): string
     {
