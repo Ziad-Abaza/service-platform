@@ -61,6 +61,24 @@ class Feature extends Model implements HasMedia
     }
 
     /**
+     * The services that have this feature.
+     */
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'service_features')
+                    ->withTimestamps();
+    }
+    
+    /**
+     * The pricing plans that have this feature.
+     */
+    public function pricingPlans()
+    {
+        return $this->belongsToMany(ServicePricingPlan::class, 'pricing_plan_features', 'feature_id', 'pricing_plan_id')
+                    ->withTimestamps();
+    }
+
+    /**
      * Add logo file
      */
     public function addLogo($file)

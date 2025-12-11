@@ -61,7 +61,7 @@ class ServiceComparison extends Model implements HasMedia
      */
     public function comparisonServices()
     {
-        return $this->hasMany(ComparisonService::class);
+        return $this->hasMany(ComparisonService::class, 'comparison_id');
     }
 
     /**
@@ -69,9 +69,8 @@ class ServiceComparison extends Model implements HasMedia
      */
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'comparison_services')
-            ->withPivot('sort_order')
-            ->orderBy('pivot_sort_order');
+        return $this->belongsToMany(Service::class, 'comparison_services', 'comparison_id', 'service_id')
+            ->withPivot('comparison_data');
     }
 
     /**

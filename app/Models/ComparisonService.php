@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ComparisonService extends Model
+class ComparisonService extends Pivot
 {
-    use HasFactory;
-
+    protected $table = 'comparison_services';
+    
     protected $fillable = [
         'comparison_id',
         'service_id',
@@ -18,6 +17,9 @@ class ComparisonService extends Model
     protected $casts = [
         'comparison_data' => 'array',
     ];
+    
+    public $incrementing = true;
+    public $timestamps = true;
 
     /**
      * Relation to service comparison

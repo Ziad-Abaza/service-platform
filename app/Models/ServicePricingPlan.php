@@ -13,19 +13,41 @@ class ServicePricingPlan extends Model
         'service_id',
         'name_ar',
         'name_en',
+        'description_ar',
+        'description_en',
         'price',
+        'billing_period_ar',
+        'billing_period_en',
         'billing_cycle_id',
+        'badge_ar',
+        'badge_en',
+        'button_text_ar',
+        'button_text_en',
+        'button_link',
+        'highlight_text_ar',
+        'highlight_text_en',
+        'second_button_text_ar',
+        'second_button_text_en',
+        'second_button_link',
         'popular',
+        'is_featured',
         'sort_order',
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
         'popular' => 'boolean',
+        'is_featured' => 'boolean',
     ];
 
     protected $appends = [
-        'name'
+        'name',
+        'description',
+        'billing_period',
+        'badge',
+        'button_text',
+        'second_button_text',
+        'highlight_text',
     ];
 
     /**
@@ -35,6 +57,60 @@ class ServicePricingPlan extends Model
     {
         $locale = app()->getLocale();
         return $this->{"name_{$locale}"} ?? $this->name_en ?? $this->name_ar;
+    }
+
+    /**
+     * Translation: description
+     */
+    public function getDescriptionAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{"description_{$locale}"} ?? $this->description_en ?? $this->description_ar;
+    }
+
+    /**
+     * Translation: billing_period
+     */
+    public function getBillingPeriodAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{"billing_period_{$locale}"} ?? $this->billing_period_en ?? $this->billing_period_ar;
+    }
+
+    /**
+     * Translation: badge
+     */
+    public function getBadgeAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{"badge_{$locale}"} ?? $this->badge_en ?? $this->badge_ar;
+    }
+
+    /**
+     * Translation: button_text
+     */
+    public function getButtonTextAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{"button_text_{$locale}"} ?? $this->button_text_en ?? $this->button_text_ar;
+    }
+
+    /**
+     * Translation: second_button_text
+     */
+    public function getSecondButtonTextAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{"second_button_text_{$locale}"} ?? $this->second_button_text_en ?? $this->second_button_text_ar;
+    }
+
+    /**
+     * Translation: highlight_text
+     */
+    public function getHighlightTextAttribute()
+    {
+        $locale = app()->getLocale();
+        return $this->{"highlight_text_{$locale}"} ?? $this->highlight_text_en ?? $this->highlight_text_ar;
     }
 
     /**
@@ -58,7 +134,7 @@ class ServicePricingPlan extends Model
      */
     public function pricingPlanFeatures()
     {
-        return $this->hasMany(PricingPlanFeature::class);
+        return $this->hasMany(PricingPlanFeature::class, 'pricing_plan_id');
     }
 
     /**
@@ -75,5 +151,22 @@ class ServicePricingPlan extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('sort_order');
+    }
+
+    /**
+     * Scope featured plans
+     */
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
+    }
+
+    /**
+     * The features that belong to the pricing plan.
+     */
+    public function features()
+    {
+        return $this->belongsToMany(Feature::class, 'pricing_plan_features', 'pricing_plan_id', 'feature_id')
+            ->withTimestamps();
     }
 }

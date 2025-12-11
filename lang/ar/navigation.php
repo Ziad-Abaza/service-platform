@@ -24,6 +24,8 @@ return [
     'documents' => 'المستندات',
     'comparison' => 'مقارنة',
     'comparisons' => 'المقارنات',
+    'webinar_patterns' => 'أنماط الندوات',
+    'webinar_pattern' => 'نمط الندوة',
     'general_settings' => 'الإعدادات العامة',
     'user_management' => 'إدارة المستخدمين',
     'roles_permissions' => 'الأدوار والصلاحيات',

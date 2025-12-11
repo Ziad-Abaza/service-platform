@@ -24,6 +24,8 @@ return [
     'documents' => 'Documents',
     'comparison' => 'Comparison',
     'comparisons' => 'Comparisons',
+    'webinar_patterns' => 'Webinar Patterns',
+    'webinar_pattern' => 'Webinar Pattern',
     'general_settings' => 'General Settings',
     'user_management' => 'User Management',
     'roles_permissions' => 'Roles & Permissions',

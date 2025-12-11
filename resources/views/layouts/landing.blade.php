@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}"
+    class="scroll-smooth">
 
 <head>
     <meta charset="utf-8">
@@ -47,23 +48,33 @@
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <a href="#"
                                 class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition duration-150 ease-in-out">
-                                Product
+                                {{ __('landing.nav.product') }}
                             </a>
                             <a href="#"
                                 class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition duration-150 ease-in-out">
-                                Pricing
+                                {{ __('landing.nav.pricing') }}
                             </a>
                             <a href="#"
                                 class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition duration-150 ease-in-out">
-                                Resources
+                                {{ __('landing.nav.resources') }}
                             </a>
                         </div>
                     </div>
 
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <div class="hidden sm:flex sm:items-center sm:ml-6 space-x-4">
+                        <div class="flex items-center space-x-2">
+                            @if(app()->getLocale() == 'en')
+                                <a href="{{ route('locale.switch', 'ar') }}"
+                                    class="text-gray-500 hover:text-gray-900 font-medium px-3 py-2 rounded-md hover:bg-gray-100 transition">العربية</a>
+                            @else
+                                <a href="{{ route('locale.switch', 'en') }}"
+                                    class="text-gray-500 hover:text-gray-900 font-medium px-3 py-2 rounded-md hover:bg-gray-100 transition">English</a>
+                            @endif
+                        </div>
+
                         <a href="{{ route('login') }}"
                             class="inline-flex items-center px-4 py-2 bg-purple-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-purple-700 focus:bg-purple-700 active:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                            Login
+                            {{ __('landing.nav.login') }}
                         </a>
                     </div>
                 </div>
@@ -89,11 +100,11 @@
                             <span class="font-bold text-xl">StoreHub</span>
                         </div>
                         <p class="text-slate-400 text-sm">
-                            Your Complete E-Commerce Solution. Success Online + Remote + Purchases.
+                            {{ __('landing.footer.description') }}
                         </p>
                     </div>
                     <div>
-                        <h4 class="font-semibold mb-4 text-white">Services</h4>
+                        <h4 class="font-semibold mb-4 text-white">{{ __('landing.footer.services') }}</h4>
                         <ul class="space-y-2 text-sm text-slate-400">
                             <li><a href="#" class="hover:text-white">Custom Build</a></li>
                             <li><a href="#" class="hover:text-white">Rental Store</a></li>
@@ -101,7 +112,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-semibold mb-4 text-white">Company</h4>
+                        <h4 class="font-semibold mb-4 text-white">{{ __('landing.footer.company') }}</h4>
                         <ul class="space-y-2 text-sm text-slate-400">
                             <li><a href="#" class="hover:text-white">About Us</a></li>
                             <li><a href="#" class="hover:text-white">Careers</a></li>
@@ -109,7 +120,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-semibold mb-4 text-white">Contact</h4>
+                        <h4 class="font-semibold mb-4 text-white">{{ __('landing.footer.contact') }}</h4>
                         <div class="flex space-x-4">
                             <!-- Social Media Icons placeholder -->
                             <a href="#" class="text-slate-400 hover:text-white">Twitter</a>
@@ -119,7 +130,7 @@
                     </div>
                 </div>
                 <div class="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-400">
-                    &copy; {{ date('Y') }} StoreHub. All rights reserved.
+                    &copy; {{ date('Y') }} StoreHub. {{ __('landing.footer.rights_reserved') }}
                 </div>
             </div>
         </footer>

@@ -47,13 +47,29 @@ class ServiceComparisonForm
                                             ]),
                                     ]),
 
-                                Select::make('services')
-                                    ->relationship('services', 'name_en') // Assuming name_en or using virtual attribute if searchable
-                                    ->multiple()
-                                    ->preload()
-                                    ->searchable()
+                                \Filament\Forms\Components\Repeater::make('comparisonServices')
+                                    ->relationship('comparisonServices') // Use the HasMany relationship
+                                    ->schema([
+                                        Select::make('service_id')
+                                            ->relationship('service', 'name_en') // BelongsTo inside ComparisonService
+                                            ->required()
+                                            ->label('Service')
+                                            ->searchable()
+                                            ->preload()
+                                            ->distinct()
+                                            ->disableOptionsWhenSelectedInSiblingRepeaterItems(), // Prevent selecting same service twice
+
+                                        \Filament\Forms\Components\KeyValue::make('comparison_data')
+                                            ->label('Comparison Data')
+                                            ->keyLabel('Feature')
+                                            ->valueLabel('Value')
+                                            ->helperText('Add features and their values (e.g., Price: $500, Support: 24/7, Mobile App: true/false)')
+                                            ->columnSpanFull(),
+                                    ])
                                     ->label('Services to Compare')
-                                    ->helperText('Select services to include in this comparison table.'),
+                                    ->itemLabel(fn(array $state): ?string => \App\Models\Service::find($state['service_id'] ?? null)?->name_en ?? null)
+                                    ->collapsible()
+                                    ->collapsed(),
                             ]),
                         Section::make()
                             ->columnSpan(1)
