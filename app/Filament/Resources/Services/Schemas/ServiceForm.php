@@ -30,6 +30,9 @@ class ServiceForm
                                 TextInput::make('slug')
                                     ->required()
                                     ->unique(ignoreRecord: true),
+                                TextInput::make('sales_phone')
+                                    ->label(__('models.sales_phone'))
+                                    ->tel(),
                             ]),
                         Grid::make(2)
                             ->schema([

@@ -220,4 +220,5 @@ return [
     'no_reviews' => 'No reviews found',
     'star' => 'star',
     'stars' => 'stars',
+    'sales_phone' => 'Sales Phone',
 ];

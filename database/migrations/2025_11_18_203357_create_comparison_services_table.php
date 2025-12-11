@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('comparison_id')->constrained('service_comparisons')->onDelete('cascade');
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
             $table->json('comparison_data')->nullable();
+            $table->timestamps();
         });
     }
 

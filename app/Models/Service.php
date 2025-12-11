@@ -24,6 +24,7 @@ class Service extends Model implements HasMedia
         'featured',
         'is_active',
         'sort_order',
+        'sales_phone',
     ];
 
     protected $appends = [
