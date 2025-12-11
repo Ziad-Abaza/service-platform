@@ -296,56 +296,102 @@
 
 
     <!-- Testimonials Section -->
-    <div class="py-20 bg-gray-50">
+    <div class="py-12 md:py-20 bg-gray-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ __('landing.sections.testimonials_title') }}</h2>
-                <p class="text-gray-600">{{ __('landing.sections.testimonials_subtitle') }}</p>
+            <div class="text-center mb-12 md:mb-16 px-2">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">{{ __('landing.sections.testimonials_title') }}</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">{{ __('landing.sections.testimonials_subtitle') }}</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @foreach($reviews as $review)
-                    <div class="bg-white p-8 rounded-xl shadow-sm">
-                        <div class="flex items-center mb-4">
-                             @if($review->avatar_url)
-                                <img src="{{ $review->avatar_url }}" class="h-10 w-10 rounded-full mr-3 object-cover" alt="">
-                             @else
-                                <div class="h-10 w-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold mr-3">
-                                    {{ substr($review->name, 0, 2) }}
+            <div class="relative">
+                <!-- Scrollable container for mobile -->
+                <div class="md:hidden pb-6 -mx-4 px-4 overflow-x-auto scrollbar-hide">
+                    <div class="flex space-x-4 w-max min-w-full">
+                        @foreach($reviews as $review)
+                            <div class="w-72 flex-shrink-0 bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                                <div class="flex items-center mb-4">
+                                    @if($review->avatar_url)
+                                        <img src="{{ $review->avatar_url }}" class="h-12 w-12 rounded-full mr-3 object-cover flex-shrink-0" alt="{{ $review->name }}">
+                                    @else
+                                        <div class="h-12 w-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-lg flex-shrink-0">
+                                            {{ substr($review->name, 0, 2) }}
+                                        </div>
+                                    @endif
+                                    <div class="min-w-0">
+                                        <h4 class="font-bold text-gray-900 truncate">{{ $review->name }}</h4>
+                                        @if($review->user?->email)
+                                            <p class="text-xs text-gray-500 truncate">{{ $review->user->email }}</p>
+                                        @endif
+                                    </div>
                                 </div>
-                             @endif
-                            <div>
-                                <h4 class="font-bold text-gray-900">{{ $review->name }}</h4>
-                                <p class="text-xs text-gray-500">{{ $review->user->email ?? '' }}</p>
+                                <div class="flex text-yellow-400 text-lg mb-3">
+                                    @for($i = 0; $i < 5; $i++)
+                                        <span class="{{ $i < $review->rating ? 'opacity-100' : 'opacity-30' }}">★</span>
+                                    @endfor
+                                </div>
+                                <p class="text-gray-600 text-sm leading-relaxed line-clamp-4">"{{ $review->comment }}"</p>
                             </div>
-                        </div>
-                        <div class="flex text-yellow-400 mb-4">
-                            @for($i = 0; $i < $review->rating; $i++)
-                                ★
-                            @endfor
-                        </div>
-                        <p class="text-gray-600 text-sm">"{{ $review->comment }}"</p>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
+
+                <!-- Grid layout for larger screens -->
+                <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach($reviews as $review)
+                        <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+                            <div class="flex items-center mb-4">
+                                @if($review->avatar_url)
+                                    <img src="{{ $review->avatar_url }}" class="h-12 w-12 rounded-full mr-3 object-cover flex-shrink-0" alt="{{ $review->name }}">
+                                @else
+                                    <div class="h-12 w-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-lg flex-shrink-0">
+                                        {{ substr($review->name, 0, 2) }}
+                                    </div>
+                                @endif
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-gray-900 truncate">{{ $review->name }}</h4>
+                                    @if($review->user?->email)
+                                        <p class="text-xs text-gray-500 truncate">{{ $review->user->email }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 text-lg mb-3">
+                                @for($i = 0; $i < 5; $i++)
+                                    <span class="{{ $i < $review->rating ? 'opacity-100' : 'opacity-30' }}">★</span>
+                                @endfor
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">"{{ $review->comment }}"</p>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Scroll indicator for mobile -->
+                <div class="md:hidden mt-6 flex justify-center space-x-2">
+                    @foreach($reviews as $index => $review)
+                        <span class="h-2 w-2 rounded-full bg-gray-300 inline-block"></span>
+                    @endforeach
+                </div>
             </div>
-             <div class="mt-12 flex justify-center space-x-8 text-center bg-white p-6 rounded-lg shadow-sm max-w-4xl mx-auto">
-                <div>
-                     <span class="block text-2xl font-bold text-purple-600">10,000+</span>
-                     <span class="text-xs text-gray-500">Active Stores</span>
-                </div>
-                 <div>
-                     <span class="block text-2xl font-bold text-green-500">$50M+</span>
-                     <span class="text-xs text-gray-500">Revenue Generated</span>
-                </div>
-                 <div>
-                     <span class="block text-2xl font-bold text-blue-500">98%</span>
-                     <span class="text-xs text-gray-500">Customer Satisfaction</span>
-                </div>
-                 <div>
-                     <span class="block text-2xl font-bold text-orange-500">24/7</span>
-                     <span class="text-xs text-gray-500">Support Available</span>
-                </div>
-            </div>
+        </div>
+             <div class="mt-12 bg-white p-4 sm:p-6 rounded-lg shadow-sm max-w-4xl mx-auto">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+        <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center hover:shadow-md transition-shadow duration-300">
+            <span class="block text-xl sm:text-2xl font-bold text-purple-600">10,000+</span>
+            <span class="text-xs text-gray-600">{{ __('landing.stats.active_stores') }}</span>
+        </div>
+        <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center hover:shadow-md transition-shadow duration-300">
+            <span class="block text-xl sm:text-2xl font-bold text-green-500">$50M+</span>
+            <span class="text-xs text-gray-600">{{ __('landing.stats.revenue') }}</span>
+        </div>
+        <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center hover:shadow-md transition-shadow duration-300">
+            <span class="block text-xl sm:text-2xl font-bold text-blue-500">98%</span>
+            <span class="text-xs text-gray-600">{{ __('landing.stats.satisfaction') }}</span>
+        </div>
+        <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center hover:shadow-md transition-shadow duration-300">
+            <span class="block text-xl sm:text-2xl font-bold text-orange-500">24/7</span>
+            <span class="text-xs text-gray-600">{{ __('landing.stats.support') }}</span>
+        </div>
+    </div>
+</div>
         </div>
     </div>
     <!-- Service Section -->

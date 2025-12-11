@@ -11,7 +11,7 @@
                 <p class="text-xl mb-8 fade-in opacity-90">
                     {{ $service->short_description }}
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center fade-in w-full sm:w-auto">
                     <button onclick="scrollToPricing()"
                         class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                         {{ __('service.buttons.get_started') }}
@@ -26,8 +26,8 @@
     </section>
 
     <!-- Service Details Section -->
-    <section class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-10 sm:py-16">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- Left Column - Images and Media -->
                 <div>
@@ -35,19 +35,19 @@
                     <div class="mb-4">
                         @if($images->isNotEmpty())
                             <img id="mainImage" src="{{ $images->first()->getUrl() }}" alt="{{ $service->name }}"
-                                class="w-full h-96 object-cover rounded-lg">
+                                class="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg">
                         @else
-                            <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-image text-gray-400 text-4xl"></i>
+                            <div class="w-full h-64 sm:h-80 md:h-96 bg-gray-200 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-image text-gray-400 text-3xl sm:text-4xl"></i>
                             </div>
                         @endif
                     </div>
 
                     <!-- Thumbnail Gallery -->
-                    <div id="thumbnailGallery" class="grid grid-cols-4 gap-2 mb-6">
+                    <div id="thumbnailGallery" class="grid grid-cols-4 gap-2 mb-6 overflow-x-auto pb-2 -mx-1 px-1">
                         @foreach($images as $image)
                             <img src="{{ $image->getUrl() }}" alt="{{ $service->name }} thumbnail"
-                                class="w-full h-20 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity"
+                                class="w-full h-16 sm:h-20 object-cover rounded cursor-pointer hover:opacity-75 transition-opacity flex-shrink-0"
                                 onclick="document.getElementById('mainImage').src='{{ $image->getUrl() }}'">
                         @endforeach
                     </div>
@@ -145,7 +145,7 @@
 
                     <!-- Trust Indicators -->
                     <div class="border-t pt-6">
-                        <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="grid grid-cols-3 gap-2 sm:gap-4 text-center text-sm sm:text-base">
                             <div>
                                 <div class="text-2xl font-bold text-indigo-600">24/7</div>
                                 <div class="text-sm text-gray-600">{{ __('service.trust.support') }}</div>
@@ -175,7 +175,7 @@
                         <nav class="flex overflow-x-auto scrollbar-hide px-4 pt-1" role="tablist"
                             aria-label="Service information tabs">
                             <button onclick="showServiceTab('specifications')"
-                                class="service-tab-button group relative flex-1 min-w-[140px] px-6 py-4 text-center font-medium text-sm transition-all duration-300 ease-in-out border-b-2 border-indigo-500 text-indigo-600 bg-gradient-to-b from-indigo-50 to-transparent hover:from-indigo-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 rounded-t-lg shadow-sm hover:shadow-md"
+                                class="service-tab-button group relative flex-1 min-w-[120px] sm:min-w-[140px] px-3 sm:px-6 py-3 sm:py-4 text-center font-medium text-xs sm:text-sm transition-all duration-300 ease-in-out border-b-2 border-indigo-500 text-indigo-600 bg-gradient-to-b from-indigo-50 to-transparent hover:from-indigo-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 rounded-t-lg shadow-sm hover:shadow-md"
                                 data-tab="specifications" role="tab" aria-selected="true"
                                 aria-controls="service-specifications">
                                 <div class="flex items-center justify-center space-x-2">
@@ -242,23 +242,13 @@
                 </div>
 
                 <!-- Enhanced Service Tab Content -->
-            <div class="mt-8 relative">
-                <!-- Loading Overlay -->
-                <div id="tabLoadingOverlay"
-                    class="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-xl hidden">
-                    <div class="flex items-center space-x-3">
-                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-                        <span class="text-gray-600 font-medium">Loading...</span>
-                    </div>
-                </div>
-
-                <!-- Tab Content Container -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 transition-all duration-300">
-                    <!-- Enhanced Specifications Tab -->
-                    <div id="service-specifications"
-                        class="service-tab-content active opacity-0 transform translate-y-4 transition-all duration-300">
-                        <div class="mb-6">
-                            <div class="flex items-center space-x-3 mb-6">
+                <div class="mt-8 relative">
+                    <!-- Loading Overlay -->
+                    <div id="tabLoadingOverlay"
+                        class="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-xl hidden">
+                        <div class="flex items-center space-x-3">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+                            <span class="text-gray-600 font-medium">Loading...</span>
                                 <div class="p-3 bg-indigo-100 rounded-lg">
                                     <i class="fas fa-cog text-indigo-600 text-xl"></i>
                                 </div>

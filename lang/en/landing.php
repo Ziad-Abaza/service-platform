@@ -12,6 +12,13 @@ return [
         'pricing' => 'Pricing',
         'resources' => 'Resources',
         'login' => 'Login',
+        'language' => 'Language'
+    ],
+    'stats' => [
+    'active_stores' => 'Active Stores',
+    'revenue' => 'Revenue Generated',
+    'satisfaction' => 'Customer Satisfaction',
+    'support' => 'Support Available',
     ],
     'sections' => [
         'pricing_title' => 'Our Pricing Plans',

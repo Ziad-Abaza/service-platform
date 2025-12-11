@@ -12,6 +12,13 @@ return [
         'pricing' => 'الأسعار',
         'resources' => 'الموارد',
         'login' => 'تسجيل الدخول',
+        'language' => 'اللغة'
+    ],
+    'stats' => [
+    'active_stores' => 'متجر نشط',
+    'revenue' => 'إيرادات محققة',
+    'satisfaction' => 'رضا العملاء',
+    'support' => 'دعم على مدار الساعة',
     ],
     'sections' => [
         'pricing_title' => 'خطط الأسعار لدينا',
