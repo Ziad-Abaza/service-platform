@@ -22,6 +22,8 @@
             font-family: 'Inter', sans-serif;
         }
     </style>
+    
+    @stack('service-tabs-scripts')
 </head>
 
 <body class="font-sans antialiased text-gray-900 bg-gray-50">
