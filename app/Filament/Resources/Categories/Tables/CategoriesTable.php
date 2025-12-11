@@ -19,53 +19,55 @@ class CategoriesTable
         return $table
             ->columns([
                 ImageColumn::make('logo_url')
-                    ->label('Logo')
+                    ->label(__('filament.logo'))
                     ->size(40)
                     ->circular()
                     ->defaultImageUrl(url('placeholder.png')),
                 TextColumn::make('name')
-                    ->label('Category Name')
+                    ->label(__('filament.category_name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('parent.name')
-                    ->label('Parent Category')
+                    ->label(__('filament.parent_category'))
                     ->searchable()
                     ->sortable()
-                    ->placeholder('Root'),
+                    ->placeholder(__('filament.root')),
                 TextColumn::make('slug')
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('services_count')
-                    ->label('Services')
+                    ->label(__('filament.services_count'))
                     ->counts('services')
                     ->sortable(),
                 TextColumn::make('sort_order')
-                    ->label('Order')
+                    ->label(__('filament.order'))
                     ->numeric()
                     ->sortable()
                     ->toggleable(),
                 IconColumn::make('is_active')
-                    ->label('Active')
+                    ->label(__('filament.active'))
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label(__('common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('parent')
-                    ->relationship('parent', 'name', fn($query) => $query->with(['parent']))
-                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->name)
+                    ->relationship('parent', 'name_en', fn($query) => $query->with(['parent']))
+                    ->getOptionLabelFromRecordUsing(fn($record) => $record->name)
                     ->searchable()
                     ->preload()
-                    ->placeholder('All categories'),
+                    ->placeholder(__('filament.all_categories')),
                 TernaryFilter::make('is_active')
-                    ->label('Active'),
+                    ->label(__('common.active')),
             ])
             ->recordActions([
                 EditAction::make(),

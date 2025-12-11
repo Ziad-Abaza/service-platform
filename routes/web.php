@@ -8,3 +8,6 @@ Route::get('/', function () {
 
 // Redirect /login to Filament's login page
 Route::redirect('/login', '/dashboard/login')->name('login');
+
+// Language switcher route
+Route::get('/locale/{locale}', [App\Http\Controllers\LocaleController::class, 'switch'])->name('locale.switch');

@@ -20,7 +20,31 @@ class ServiceFeatureResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $modelLabel = 'service_feature';
+    protected static ?string $pluralModelLabel = 'service_features';
+    protected static ?string $navigationLabel = 'service_features';
+    protected static ?string $breadcrumb = 'service_features';
+    protected static ?string $recordTitleAttribute = 'id';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('models.service_features');
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return __('models.service_features');
+    }
+
+    public static function getCreateButtonLabel(): string
+    {
+        return __('models.create_service_feature');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('models.service_features');
+    }
 
     public static function form(Schema $schema): Schema
     {

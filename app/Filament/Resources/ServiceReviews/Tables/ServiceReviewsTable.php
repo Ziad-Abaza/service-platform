@@ -14,32 +14,49 @@ class ServiceReviewsTable
     {
         return $table
             ->columns([
-                TextColumn::make('service_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('parent_id')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('service.name')
+                    ->label(__('models.service'))
+                    ->sortable()
+                    ->searchable(),
+                    
+                TextColumn::make('user.name')
+                    ->label(__('models.user'))
+                    ->sortable()
+                    ->searchable(),
+                    
                 TextColumn::make('name')
+                    ->label(__('models.name'))
                     ->searchable(),
+                    
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label(__('models.email'))
                     ->searchable(),
+                    
                 TextColumn::make('rating')
+                    ->label(__('models.rating'))
                     ->numeric()
-                    ->sortable(),
-                TextColumn::make('avatar_url')
-                    ->searchable(),
+                    ->sortable()
+                    ->formatStateUsing(fn (string $state): string => "{$state}/5"),
+                    
                 TextColumn::make('status')
-                    ->searchable(),
+                    ->label(__('models.status'))
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'approved' => 'success',
+                        'rejected' => 'danger',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => __("models.{$state}")),
+                    
                 TextColumn::make('created_at')
+                    ->label(__('models.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                    
                 TextColumn::make('updated_at')
+                    ->label(__('models.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

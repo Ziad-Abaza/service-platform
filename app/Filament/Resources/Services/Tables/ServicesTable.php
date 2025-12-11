@@ -19,16 +19,16 @@ class ServicesTable
         return $table
             ->columns([
                 ImageColumn::make('logo_url')
-                    ->label('Logo')
+                    ->label(__('filament.logo'))
                     ->size(40)
                     ->circular()
                     ->defaultImageUrl(url('placeholder.png')),
                 TextColumn::make('name')
-                    ->label('Service Name')
+                    ->label(__('filament.service_name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('category.name')
-                    ->label('Category')
+                    ->label(__('models.category'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('slug')
@@ -36,35 +36,37 @@ class ServicesTable
                     ->sortable()
                     ->toggleable(),
                 IconColumn::make('featured')
-                    ->label('Featured')
+                    ->label(__('models.featured'))
                     ->boolean()
                     ->toggleable(),
                 IconColumn::make('is_active')
-                    ->label('Active')
+                    ->label(__('filament.active'))
                     ->boolean(),
                 TextColumn::make('sort_order')
-                    ->label('Order')
+                    ->label(__('filament.order'))
                     ->numeric()
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('created_at')
+                    ->label(__('common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('category')
-                    ->relationship('category', 'name', fn($query) => $query->with(['category']))
-                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->name)
+                    ->relationship('category', 'name_en', fn($query) => $query->with(['category']))
+                    ->getOptionLabelFromRecordUsing(fn($record) => $record->name)
                     ->searchable()
                     ->preload(),
                 TernaryFilter::make('featured'),
                 TernaryFilter::make('is_active')
-                    ->label('Active'),
+                    ->label(__('common.active')),
             ])
             ->recordActions([
                 EditAction::make(),

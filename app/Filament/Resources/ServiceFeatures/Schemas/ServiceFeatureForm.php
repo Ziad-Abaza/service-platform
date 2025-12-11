@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\ServiceFeatures\Schemas;
 
-use Filament\Forms\Components\TextInput;
+use App\Models\Feature;
+use App\Models\Service;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
 
 class ServiceFeatureForm
@@ -11,12 +13,29 @@ class ServiceFeatureForm
     {
         return $schema
             ->components([
-                TextInput::make('service_id')
+                Select::make('service_id')
+                    ->label(__('models.service'))
+                    ->options(Service::query()
+                        ->select('id', 'name_ar', 'name_en')
+                        ->get()
+                        ->mapWithKeys(function ($service) {
+                            return [$service->id => $service->name];
+                        }))
+                    ->searchable()
                     ->required()
-                    ->numeric(),
-                TextInput::make('feature_id')
+                    ->placeholder(__('models.select_service')),
+                    
+                Select::make('feature_id')
+                    ->label(__('models.feature'))
+                    ->options(Feature::query()
+                        ->select('id', 'name_ar', 'name_en')
+                        ->get()
+                        ->mapWithKeys(function ($feature) {
+                            return [$feature->id => $feature->name];
+                        }))
+                    ->searchable()
                     ->required()
-                    ->numeric(),
+                    ->placeholder(__('models.select_feature')),
             ]);
     }
 }

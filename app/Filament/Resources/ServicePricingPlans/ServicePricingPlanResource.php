@@ -20,7 +20,31 @@ class ServicePricingPlanResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $modelLabel = 'service_pricing_plan';
+    protected static ?string $pluralModelLabel = 'service_pricing_plans';
+    protected static ?string $navigationLabel = 'service_pricing_plans';
+    protected static ?string $breadcrumb = 'service_pricing_plans';
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('models.service_pricing_plans');
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return __('models.service_pricing_plans');
+    }
+
+    public static function getCreateButtonLabel(): string
+    {
+        return __('models.create_service_pricing_plan');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('models.service_pricing_plans');
+    }
 
     public static function form(Schema $schema): Schema
     {

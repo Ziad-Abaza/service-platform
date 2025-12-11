@@ -21,13 +21,13 @@ class ServiceReviewResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'name';
-
     protected static string|UnitEnum|null $navigationGroup = 'Content Management';
 
-    protected static ?string $label = 'Review';
-
-    protected static ?string $pluralLabel = 'Reviews';
+    protected static ?string $modelLabel = 'service_review';
+    protected static ?string $pluralModelLabel = 'service_reviews';
+    protected static ?string $navigationLabel = 'service_reviews';
+    protected static ?string $breadcrumb = 'service_reviews';
+    protected static ?string $recordTitleAttribute = 'id';
 
     public static function form(Schema $schema): Schema
     {

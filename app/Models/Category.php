@@ -63,6 +63,14 @@ class Category extends Model implements HasMedia
     }
 
     /**
+     * Alias for parent relationship
+     */
+    public function category()
+    {
+        return $this->parent();
+    }
+
+    /**
      * Relation to child categories
      */
     public function children()

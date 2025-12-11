@@ -2,9 +2,22 @@
 
 namespace App\Providers\Filament;
 
-use Filament\PanelProvider;
+use Filament\Http\Middleware\Authenticate;
+use Filament\Http\Middleware\DisableBladeIconComponents;
+use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
+use Filament\Pages;
 use Filament\Panel;
-use App\Filament\Auth\CustomLogin;
+use Filament\PanelProvider;
+use Filament\Support\Colors\Color;
+use Filament\Widgets;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\AuthenticateSession;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,11 +44,25 @@ class AdminPanelProvider extends PanelProvider
                 'filament.auth',
             ])
             ->authGuard('web')
-            ->brandName('Service Dashboard')
+            ->brandName(__('navigation.dashboard'))
             ->navigationGroups([
-                'Services',
-                'Content Management',
-                'Settings',
+                __('navigation.services'),
+                __('navigation.content_management'),
+                __('navigation.settings'),
+            ])
+            ->userMenuItems([
+                // Language switcher بدون أيقونة
+                'language' => MenuItem::make()
+                    ->label(fn() => app()->getLocale() === 'ar' ? '🇸🇦 ' . __('navigation.arabic') : '🇬🇧 ' . __('navigation.english'))
+                    ->url(fn() => app()->getLocale() === 'ar' ? '/locale/en' : '/locale/ar')
+                    ->sort(-1),
+
+                // User profile
+                'profile' => MenuItem::make()
+                    ->label(fn() => auth()->user()->name ?? __('navigation.user'))
+                    ->icon('heroicon-o-user')
+                    ->url('/admin/profile')
+                    ->sort(0),
             ]);
     }
 }

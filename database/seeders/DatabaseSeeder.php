@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PermissionSeeder::class,
             RoleSeeder::class,
-            SettingSeeder::class,
+            // SettingSeeder::class,
         ]);
 
         // User::factory(10)->create();
@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         $admin = User::factory()->create([
             'name' => 'ziad hassan',
             'email' => 'zeyad.h.abaza@gmail.com',
-            'password' => 'password',
+            'password' => encrypt('123456789'),
             'email_verified_at' => now(),
         ]);
         
